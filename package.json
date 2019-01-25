@@ -1,0 +1,19 @@
+{
+  "name": "graphql-ts-server",
+  "version": "0.0.1",
+  "description": "Awesome project developed with TypeORM.",
+  "devDependencies": {
+    "@types/node": "^10.12.18",
+    "ts-node": "8.0.1",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "3.2.4"
+  },
+  "dependencies": {
+    "pg": "^7.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.2.12"
+  },
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  }
+}

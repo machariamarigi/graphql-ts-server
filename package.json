@@ -5,6 +5,7 @@
   "devDependencies": {
     "@types/node": "^10.12.18",
     "@types/uuid": "^3.4.4",
+    "gql2ts": "^1.10.1",
     "ts-node": "8.0.1",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "3.2.4"

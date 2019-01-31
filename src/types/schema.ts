@@ -55,3 +55,4 @@ email: string;
 }
 
 // tslint:enable
+export { GQL };

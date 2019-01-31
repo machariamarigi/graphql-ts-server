@@ -3,17 +3,15 @@ type Query {
 }
 
 type Mutation {
-  register(user: UserInput): Boolean
+  register(
+    firstName: String
+    lastName: String
+    email: String
+    password: String
+  ): Boolean
 }
 
 type User {
-  firstName: String!
-  lastName: String!
-  password: String!
-  email: String!
-}
-
-input UserInput {
   firstName: String!
   lastName: String!
   password: String!

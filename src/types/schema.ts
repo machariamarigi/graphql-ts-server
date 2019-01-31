@@ -35,14 +35,10 @@ register: boolean | null;
 }
 
 interface IRegisterOnMutationArguments {
-user?: IUserInput | null;
-}
-
-interface IUserInput {
-firstName: string;
-lastName: string;
-password: string;
-email: string;
+firstName?: string | null;
+lastName?: string | null;
+email?: string | null;
+password?: string | null;
 }
 
 interface IUser {

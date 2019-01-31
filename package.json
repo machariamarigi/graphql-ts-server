@@ -21,6 +21,8 @@
   },
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
-    "gen-schema-types": "gql2ts src/schema.graphql -o src/types/schema.d.ts"
+    "gen-schema-types": "gql2ts src/schema.graphql -o src/types/schema.ts",
+    "export-schema-types": "echo 'export { GQL };' >> ./src/types/schema.ts",
+    "refresh-schema-types": "yarn gen-schema-types && yarn export-schema-types"
   }
 }

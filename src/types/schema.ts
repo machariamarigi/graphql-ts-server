@@ -3,14 +3,14 @@
 
 declare namespace GQL {
 interface IGraphQLResponseRoot {
-data?: IQuery | IMutation;
-errors?: Array<IGraphQLResponseError>;
+data: IQuery | IMutation;
+errors: Array<IGraphQLResponseError>;
 }
 
 interface IGraphQLResponseError {
 /** Required for all errors */
 message: string;
-locations?: Array<IGraphQLResponseErrorLocation>;
+locations: Array<IGraphQLResponseErrorLocation>;
 /** 7.2.2 says 'GraphQL servers may provide additional entries to error' */
 [propName: string]: any;
 }
@@ -26,19 +26,19 @@ hello: string;
 }
 
 interface IHelloOnQueryArguments {
-name?: string | null;
+name?: string;
 }
 
 interface IMutation {
 __typename: "Mutation";
-register: boolean | null;
+register: boolean;
 }
 
 interface IRegisterOnMutationArguments {
-firstName?: string | null;
-lastName?: string | null;
-email?: string | null;
-password?: string | null;
+firstName: string;
+lastName: string;
+email: string;
+password: string;
 }
 
 interface IUser {

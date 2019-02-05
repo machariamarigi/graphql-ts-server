@@ -4,9 +4,12 @@
   "description": "Awesome project developed with TypeORM.",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
+    "@types/jest": "^24.0.0",
     "@types/node": "^10.12.18",
     "@types/uuid": "^3.4.4",
     "gql2ts": "^1.10.1",
+    "jest": "^24.1.0",
+    "ts-jest": "^23.10.5",
     "ts-node": "8.0.1",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "3.2.4"

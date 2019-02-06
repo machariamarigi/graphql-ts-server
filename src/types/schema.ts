@@ -35,16 +35,14 @@ register: boolean;
 }
 
 interface IRegisterOnMutationArguments {
-firstName: string;
-lastName: string;
+userName: string;
 email: string;
 password: string;
 }
 
 interface IUser {
 __typename: "User";
-firstName: string;
-lastName: string;
+userName: string;
 password: string;
 email: string;
 }

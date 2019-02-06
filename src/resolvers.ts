@@ -10,18 +10,21 @@ export const resolvers: ResolverMap = {
   Mutation: {
     register: async (
       _,
-      { firstName, lastName, email, password }: GQL.IRegisterOnMutationArguments
+      { userName, email, password }: GQL.IRegisterOnMutationArguments
     ) => {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = User.create({
-        firstName,
-        lastName,
-        email,
-        password: hashedPassword
-      });
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = User.create({
+          username: userName,
+          email,
+          password: hashedPassword
+        });
 
-      await user.save();
-      return true;
+        await user.save();
+        return true;
+      } catch (error) {
+        return false;
+      }
     }
   }
 };

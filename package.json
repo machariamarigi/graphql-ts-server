@@ -27,8 +27,9 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "nodemon --exec ts-node src/index.ts",
-    "test": "jest",
+    "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "migrations:dev": "ts-node ./node_modules/typeorm/cli.js migration:run -c development",
     "gen-schema-types": "gql2ts src/schema.graphql -o src/types/schema.ts -l",
     "export-schema-types": "echo 'export { GQL };' >> ./src/types/schema.ts",
     "refresh-schema-types": "yarn gen-schema-types && yarn export-schema-types"

@@ -1,8 +1,11 @@
 import { request } from "graphql-request";
 
-import { userName, email, passsword } from "./constants";
-import { User } from "../src/entity/User";
-import { server } from "./../src/server";
+import { User } from "../../entity/User";
+import { server } from "../../server";
+
+const userName = "testuser";
+const email = "test@email.com";
+const passsword = "testpass";
 
 let getHost = () => "";
 

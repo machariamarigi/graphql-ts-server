@@ -1,12 +1,13 @@
 import * as bcrypt from "bcryptjs";
-import { GQL, ResolverMap } from "./types";
-import { User } from "./entity/User";
+
+import { GQL, ResolverMap } from "../../types";
+import { User } from "../../entity/User";
 
 export const resolvers: ResolverMap = {
   Query: {
-    hello: (_, { name }: GQL.IHelloOnQueryArguments) =>
-      `Hello ${name || "World"}`
+    registration: () => "allowed"
   },
+
   Mutation: {
     register: async (
       _,

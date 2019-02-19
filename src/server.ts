@@ -1,11 +1,13 @@
 import * as path from "path";
 import * as fs from "fs";
-import { GraphQLServer } from "graphql-yoga";
+import { GraphQLServer, Options } from "graphql-yoga";
 import { importSchema } from "graphql-import";
 import { mergeSchemas, makeExecutableSchema } from "graphql-tools";
+import { formatError } from "apollo-errors";
 
 import { createTypeormConnection } from "./utils/createTypeormConnection";
 import { GraphQLSchema } from "graphql";
+
 
 export const server = async () => {
   try {
@@ -18,15 +20,18 @@ export const server = async () => {
       );
       schemas.push(makeExecutableSchema({ resolvers, typeDefs }));
     });
+
     const gqlServer = new GraphQLServer({ schema: mergeSchemas({ schemas }) });
     await createTypeormConnection();
-    const app = await gqlServer.start({
+    const options: Options = {
+      formatError,
       port: process.env.NODE_ENV === "test" ? 0 : 4000
-    });
-    console.log("Application is running on http://localhost:4000",)
+    };
+    const app = await gqlServer.start(options);
+    console.log("Application is running on http://localhost:4000");
     return app;
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return error;
   }
 };

@@ -1,7 +1,9 @@
+import { FatalError } from "./../../utils/fatalError";
 import * as bcrypt from "bcryptjs";
 
 import { GQL, ResolverMap } from "../../types";
 import { User } from "../../entity/User";
+import { EmailUsedError } from "./errors";
 
 export const resolvers: ResolverMap = {
   Query: {
@@ -21,10 +23,23 @@ export const resolvers: ResolverMap = {
           password: hashedPassword
         });
 
+        const emailAlreadyExits = await User.findOne({
+          where: { email },
+          select: ["id"]
+        });
+
+        if (emailAlreadyExits) {
+          throw new EmailUsedError();
+        }
+
         await user.save();
         return true;
       } catch (error) {
-        return false;
+        if (error.path) {
+          throw new FatalError({ data: { reason: error.message } });
+        } else {
+          throw error;
+        }
       }
     }
   }

@@ -9,12 +9,6 @@ const passsword = "testpass";
 
 let getHost = () => "";
 
-beforeAll(async () => {
-  const app = await server();
-  const { port } = app.address();
-  getHost = () => `http://127.0.0.1:${port}`;
-});
-
 const mutation = `
   mutation {
     register(userName: "${userName}", email: "${email}", password: "${passsword}")
@@ -22,6 +16,12 @@ const mutation = `
 `;
 
 describe("registers a user", async () => {
+  beforeAll(async () => {
+    const app = await server();
+    const { port } = app.address();
+    getHost = () => `http://127.0.0.1:${port}`;
+  });
+
   test("mutation response", async () => {
     const response = await request(getHost(), mutation);
     expect(response).toEqual({ register: true });
@@ -37,5 +37,13 @@ describe("registers a user", async () => {
     const users = await User.find({ where: { email } });
     const user = users[0];
     expect(user.password).not.toEqual(passsword);
+  });
+
+  test("unique email", async () => {
+    try {
+      await request(getHost(), mutation);
+    } catch (object) {
+      expect(object.message).toContain("Email has already been used");
+    }
   });
 });

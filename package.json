@@ -15,6 +15,7 @@
     "typescript": "3.2.4"
   },
   "dependencies": {
+    "apollo-errors": "^1.9.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.2.0",
     "graphql-import": "^0.7.1",
@@ -24,12 +25,11 @@
     "nodemon": "^1.18.9",
     "pg": "^7.8.0",
     "reflect-metadata": "^0.1.13",
-    "typeorm": "0.2.12",
-    "uuid": "^3.3.2"
+    "typeorm": "0.2.12"
   },
   "scripts": {
     "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "test": "NODE_ENV=test jest --detectOpenHandles --forceExit",
     "migrations:dev": "ts-node ./node_modules/typeorm/cli.js migration:run -c development",
     "gen-schema-types": "gql2ts src/schema.graphql -o src/types/schema.ts -l",
     "export-schema-types": "echo 'export { GQL };' >> ./src/types/schema.ts",
